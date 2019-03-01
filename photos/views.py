@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Photo, Topic
+from django.http import HttpResponse, Http404
 
 
 # put the column number here
@@ -20,7 +21,7 @@ def index(request):
             entry = []
             j = 0
     list_of_topics.append(entry)
-    return render(request, 'photos/index.html', {'topics': topics, 'list_of_topics': list_of_topics})
+    return render(request, 'photo/index.html', {'topics': topics, 'list_of_topics': list_of_topics})
 
 
 def topic(request, topic_name):
@@ -37,9 +38,9 @@ def topic(request, topic_name):
             entry = []
             j = 0
     list_of_images.append(entry)
-    return render(request, 'photos/about.html', {'topic': topic, 'images': images, 'list_of_images': list_of_images})
+    return render(request, 'photo/about.html', {'topic': topic, 'images': images, 'list_of_images': list_of_images})
 
 
 def info(request, topic_name, photo_id):
     photo = get_object_or_404(Photo, topic__name=topic_name, id=photo_id)
-    return render(request, 'photos/info.html', {'photo': photo})
+    return render(request, 'photo/info.html', {'photo': photo})
