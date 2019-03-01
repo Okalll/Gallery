@@ -10,7 +10,7 @@ class Topic(models.Model):
 class Photo(models.Model):
     description = models.CharField(max_length=50)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='gallery/static/gallery')
+    image = models.ImageField(upload_to='photos/static/photos')
 
     def get_source(self):
         directory = self.image.name.split('/static/')
