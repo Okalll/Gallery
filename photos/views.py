@@ -21,7 +21,7 @@ def index(request):
             entry = []
             j = 0
     list_of_topics.append(entry)
-    return render(request, 'photo/index.html', {'topics': topics, 'list_of_topics': list_of_topics})
+    return render(request, 'index.html', {'topics': topics, 'list_of_topics': list_of_topics})
 
 
 def topic(request, topic_name):
