@@ -1,0 +1,42 @@
+<!doctype HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>X-Oklahoma Photo</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'photos/css/bootstrap.min.css' %}" >
+        <link rel="stylesheet" href="{% static 'photos/css/custom.css' %}" >
+    </head>
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+          <div class="container">
+            <a class="navbar-brand" href="/photos/">X-Okalahoma Photography</a>
+          </div>
+        </nav>
+
+        <div class="container detailContent">
+            <div class="text-center" id="imageDetail">
+                <figure class="figure">
+                    <img class="figure-img img-fluid rounded" src="{% static photo.get_source %}">
+                    <figcaption class="figure-caption">{{ photo.description }}</figcaption>
+                </figure>
+            </div>
+        </div>
+
+         <!-- Footer -->
+        <footer class="py-5 bg-light">
+          <div class="container">
+
+          </div>
+          <!-- /.container -->
+        </footer>
+
+        <script src="{% static 'photos/js/jquery.min.js' %}"></script>
+        <script src="{% static 'photos/js/popper.min.js' %}"></script>
+        <script src="{% static 'photos/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'photos/js/custom.js' %}"></script>
+    </body>
+</html>
