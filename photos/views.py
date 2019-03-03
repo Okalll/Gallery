@@ -44,3 +44,16 @@ def topic(request, topic_name):
 def info(request, topic_name, photo_id):
     photo = get_object_or_404(Photo, topic__name=topic_name, id=photo_id)
     return render(request, 'photo/info.html', {'photo': photo})
+
+def search_results(request):
+
+    if 'topic' in request.GET and request.GET["topic"]:
+        search_term = request.GET.get("topic")
+        searched_topics = Topic.search_by_topic(search_term)
+        message = f"{search_term}"
+
+        return render(request, '/search.html',{"message":message,"topics": searched_topics})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, '/search.html',{"message":message})

@@ -1,11 +1,16 @@
 from django.db import models
 
+
 class Topic(models.Model):
     name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.name
 
+    @classmethod
+    def search_by_title(cls,search_term):
+        photo = cls.objects.filter(topic__icontains=search_term)
+        return photo
 
 class Photo(models.Model):
     description = models.CharField(max_length=50)
@@ -22,3 +27,6 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.get_name()
+
+    def save_photo(self):
+        self.save()
