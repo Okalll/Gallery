@@ -1,52 +1,39 @@
-
+{% load static %}
 <!doctype HTML>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>X-Oklahoma Photo</title>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'photos/css/bootstrap.min.css' %}" >
-        <link rel="stylesheet" href="{% static 'photos/css/custom.css' %}" >
-    </head>
-    <body>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-          <div class="container">
-            <a class="navbar-brand" href="/photos/">X-Oklahoma Photography</a>
-          </div>
-        </nav>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funny-Bunny Gallery</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
 
-        <div class="container topicContent">
-            {% if images %}
-                 <div class="container">
-                    {% for list_of_image in list_of_images %}
-                        <div class="row">
-                          {% for image in list_of_image %}
-                            <div class="col" id="{{image.id}}">
-                              <a href="/photos/{{ topic.name }}/{{image.id}}"><img height="200px" width="200px" class="img-thumbnail" src="{% static image.get_source %}"></a>
-                            </div>
-                          {% endfor %}
-                      </div>
-                    {% endfor %}
-                 </div>
-            {% else %}
-                <p>No images yet.</p>
-            {% endif %}
-        </div>
+<body>
 
-         <!-- Footer -->
-        <footer class="py-5 bg-light">
-          <div class="container">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/photos/">Funny-Bunny Gallery</a>
+      <a id="about" href="/index.html">Tag Along!</a>
+    </div>
+  </nav>
 
-          </div>
-          <!-- /.container -->
-        </footer>
+  <!--Main Content-->
+  <div class="parallax"></div>
 
-        <script src="{% static 'photos/js/jquery.min.js' %}"></script>
-        <script src="{% static 'photos/js/popper.min.js' %}"></script>
-        <script src="{% static 'photos/js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'photos/js/custom.js' %}"></script>
-    </body>
+  <div class="bg-text">
+    <h1>Funny-Bunny</h1>
+    <p>Gallery</p>
+  </div>
+
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
 </html>
