@@ -1,0 +1,20 @@
+<div class="container indexContent">
+
+  {% if topics %}
+  <div class="container">
+    {% for list_of_topic in list_of_topics %}
+    <div class="row">
+      {% for topic in list_of_topic %}
+      <div class="col" id="{{topic.id}}">
+        <button onclick="location.href='/photos/{{ topic.name }}';" type="button" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">
+          {{ topic.name }}
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No topics yet.</p>
+  {% endif %}
+</div> 
