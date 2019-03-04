@@ -1,59 +1,28 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Photo, Topic
+from django.shortcuts import render,redirect
+from .models import Photo, Topic, Location
 from django.http import HttpResponse, Http404
 
-
-# put the column number here
-topic_column_number = 3
-image_column_number = 5
-
-
 def index(request):
-    topics = Topic.objects.all()
-    list_of_topics = []
-    j = 0
-    entry = []
-    for t in topics:
-        j += 1
-        entry.append(t)
-        if (j % topic_column_number) == 0:
-            list_of_topics.append(entry)
-            entry = []
-            j = 0
-    list_of_topics.append(entry)
-    return render(request, 'index.html', {'topics': topics, 'list_of_topics': list_of_topics})
-
-
-def topic(request, topic_name):
-    topic = Topic.objects.get(name=topic_name)
-    images = Topic.objects.get(name=topic_name).photo_set.all()
-    list_of_images = []
-    j = 0
-    entry = []
-    for i in images:
-        j += 1
-        entry.append(i)
-        if (j % image_column_number) == 0:
-            list_of_images.append(entry)
-            entry = []
-            j = 0
-    list_of_images.append(entry)
-    return render(request, 'photo/about.html', {'topic': topic, 'images': images, 'list_of_images': list_of_images})
-
-
-def info(request, topic_name, photo_id):
-    photo = get_object_or_404(Photo, topic__name=topic_name, id=photo_id)
-    return render(request, 'photo/info.html', {'photo': photo})
+    photos = Photo.objects.all()
+    location = Location.objects.all()
+    return render(request,'index.html', {'photo':Photo, 'location':Location})
 
 def search_results(request):
 
     if 'topic' in request.GET and request.GET["topic"]:
         search_term = request.GET.get("topic")
-        searched_topics = Topic.search_by_topic(search_term)
+        searched_photo = Photo.search_by_topic(search_term)
         message = f"{search_term}"
 
-        return render(request, '/search.html',{"message":message,"topics": searched_topics})
+        return render(request, 'search.html',{"message":message,"photo": searched_photo})
 
     else:
         message = "You haven't searched for any term"
-        return render(request, '/search.html',{"message":message})
+        return render(request, 'search.html',{"message":message})
+
+def show_location(request):
+    location = location.objects.all()
+    location = location.objects.get(id = location_id)
+    photo = photo.objects.filter(location = location.id)
+
+    return render(request,'location.html',{'location':location,'photo':photo})

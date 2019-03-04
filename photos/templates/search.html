@@ -1,20 +1,24 @@
-<div class="container indexContent">
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    {% if topics%}
+      <h2>Found {{ topics|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Found 0 topics for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
 
   {% if topics %}
-  <div class="container">
-    {% for list_of_topic in list_of_topics %}
-    <div class="row">
-      {% for topic in list_of_topic %}
-      <div class="col" id="{{topic.id}}">
-        <button onclick="location.href='/photos/{{ topic.name }}';" type="button" class="btn btn-light" data-toggle="button" aria-pressed="false" autocomplete="off">
-          {{ topic.name }}
-        </button>
+    {% for topic in topics %}
+      <div class="col-sm-6 col-md-3">
+          <h1>{{photo.topic}}</h1>
       </div>
-      {% endfor %}
-    </div>
     {% endfor %}
-  </div>
-  {% else %}
-  <p>No topics yet.</p>
   {% endif %}
-</div> 
+  </div>
+</div>
+{% endblock %}

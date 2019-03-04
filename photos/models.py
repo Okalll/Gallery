@@ -7,26 +7,36 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
+    def save_topic(self):
+        self.save()
+
+class Location(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    def save_location(self):
+        self.save()
+
     @classmethod
-    def search_by_title(cls,search_term):
-        photo = cls.objects.filter(topic__icontains=search_term)
-        return photo
+    def delete_location(cls,name):
+        cls.objects.filter(name = name).delete()
 
 class Photo(models.Model):
+    photo = models.ImageField(upload_to='photos')
+    name = models.CharField(max_length=50)
     description = models.CharField(max_length=50)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='photos/static/photos')
-
-    def get_source(self):
-        directory = self.image.name.split('/static/')
-        return directory[1]
-
-    def get_name(self):
-        directory = self.image.name.split('/')
-        return directory[-1]
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, default='LOCATION')
 
     def __str__(self):
         return self.get_name()
 
     def save_photo(self):
         self.save()
+
+    @classmethod
+    def search_by_topic(cls,search_term):
+        photo = cls.objects.filter(topic__name__contains=search_term)
+        return photo
