@@ -22,16 +22,19 @@
         <button class="btn" onclick="filterSelection('Foods')"> Foods</button>
         <button class="btn" onclick="filterSelection('Travel')"> Travel</button>
         <button class="btn" onclick="filterSelection('Fashion')"> Fashion</button>
-        <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+        <div align = "right" class="col-sm-4 col-md-4 navbar-right">
 
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Topic" name="topic">
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search Topic" name="topic">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+              </div>
             </div>
-          </div>
 
-        </form>
+          </form>
+        </div>
       </div>
 
     </div>

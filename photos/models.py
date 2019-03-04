@@ -30,8 +30,7 @@ class Photo(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, default='LOCATION')
 
-    def __str__(self):
-        return self.get_name()
+
 
     def save_photo(self):
         self.save()
