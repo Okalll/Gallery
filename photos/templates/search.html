@@ -18,10 +18,10 @@
       <h1>{{photo.name}}</h1>
     </div>
     <div class="col-md-4">
-      <img style=" margin: 20px; width:100%;" src="{{image.image.url}}" class="img-fluid" alt="Image" data-toggle="modal" data-target="#{{image.id}}">
+      <img style=" margin: 20px; width:100%;" src="{{photo.photo.url}}" class="img-fluid" alt="Image" data-toggle="modal" data-target="#{{photo.id}}">
       <!-- Image Details modal -->
 
-      <div class="modal fade bd-example-modal-lg" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="imageTitle" aria-hidden="true">
+      <div class="modal fade bd-example-modal-lg" id="{{photo.id}}" tabindex="-1" role="dialog" aria-labelledby="imageTitle" aria-hidden="true">
         <div style="max-width:70%; max-height:50%; padding-top:100px;" class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -31,7 +31,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <img src="{{image.image.url}}" class="img-fluid" alt="Image">
+              <img src="{{photo.photo.url}}" class="img-fluid" alt="Image">
               <br>
               {{photo.description}}
             </div>
@@ -53,4 +53,8 @@
       {% endif %}
     </div>
   </div>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
   {% endblock %}

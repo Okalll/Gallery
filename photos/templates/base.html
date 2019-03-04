@@ -1,0 +1,36 @@
+{% load bootstrap3 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  {% if title %}
+  <title>Funny-Bunny - {{title}}</title>
+  {% else %}
+  <title> Funny-Bunny </title>
+  {% endif %}
+
+  {% block styles %}
+  {% bootstrap_css %}
+
+  {% endblock %}
+
+</head>
+
+<body>
+
+  {% block content %}
+  {% endblock %}
+
+  {% block scripts %}
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% javascript %}
+  {% endblock %}
+</body>
