@@ -21,16 +21,14 @@
 </head>
 
 <body>
+  {% include "navbar.html" %}
 
   {% block content %}
   {% endblock %}
 
   {% block scripts %}
-  <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/popper.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  {% javascript %}
+  {% bootstrap_javascript %}
   {% endblock %}
 </body>

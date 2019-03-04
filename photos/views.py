@@ -5,7 +5,7 @@ from django.http import HttpResponse, Http404
 def index(request):
     photos = Photo.objects.all()
     location = Location.objects.all()
-    return render(request,'index.html', {'photo':Photo, 'location':Location})
+    return render(request,'index.html', {'photos':photos, 'location':location})
 
 def search_results(request):
 

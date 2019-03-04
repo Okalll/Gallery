@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% block content %}
 <div class="container">
 
@@ -14,9 +15,9 @@
 
     {% if photo %}
     {% for photo in photos %}
-    <div class="col-sm-6 col-md-3">
+    <!-- <div class="col-sm-6 col-md-3">
       <h1>{{photo.name}}</h1>
-    </div>
+    </div> -->
     <div class="col-md-4">
       <img style=" margin: 20px; width:100%;" src="{{photo.photo.url}}" class="img-fluid" alt="Image" data-toggle="modal" data-target="#{{photo.id}}">
       <!-- Image Details modal -->
@@ -36,8 +37,8 @@
               {{photo.description}}
             </div>
             <div class="modal-footer">
-              <!-- <input class="form-control input-lg" type="text" value="https://gallery-django.herokuapp.com{{image.image.url}}" id="{{image.id}}-url">
-          <button class="btn btn-outline-info" onclick="copyUrl('{{image.id}}-url')">Copy Image Url</button> -->
+              <input class="form-control input-lg" type="text" value="https://gallery-django.herokuapp.com{{photo.photo.url}}" id="{{photo.id}}-url">
+          <button class="btn btn-outline-info" onclick="copyUrl('{{photo.id}}-url')">Copy Image Url</button>
             </div>
           </div>
         </div>
@@ -53,8 +54,5 @@
       {% endif %}
     </div>
   </div>
-  <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/popper.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
+
   {% endblock %}
