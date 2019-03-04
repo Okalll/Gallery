@@ -2,23 +2,55 @@
 <div class="container">
 
   <div class="row">
-    {% if topics%}
-      <h2>Found {{ topics|length }} of searched term {{message}}</h2>
+    {% if photo %}
+    <h2>Found {{ photo|length }} of searched term {{message}}</h2>
     {% else %}
-      <h2> Found 0 topics for the search term {{message}}</h2>
+    <h2> Found 0 topics for the search term {{message}}</h2>
     {% endif %}
 
   </div>
 
   <div class="row">
 
-  {% if topics %}
-    {% for topic in topics %}
-      <div class="col-sm-6 col-md-3">
-          <h1>{{photo.topic}}</h1>
+    {% if photo %}
+    {% for photo in photos %}
+    <div class="col-sm-6 col-md-3">
+      <h1>{{photo.name}}</h1>
+    </div>
+    <div class="col-md-4">
+      <img style=" margin: 20px; width:100%;" src="{{image.image.url}}" class="img-fluid" alt="Image" data-toggle="modal" data-target="#{{image.id}}">
+      <!-- Image Details modal -->
+
+      <div class="modal fade bd-example-modal-lg" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="imageTitle" aria-hidden="true">
+        <div style="max-width:70%; max-height:50%; padding-top:100px;" class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="imageTitle">{{photo.name}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img src="{{image.image.url}}" class="img-fluid" alt="Image">
+              <br>
+              {{photo.description}}
+            </div>
+            <div class="modal-footer">
+              <!-- <input class="form-control input-lg" type="text" value="https://gallery-django.herokuapp.com{{image.image.url}}" id="{{image.id}}-url">
+          <button class="btn btn-outline-info" onclick="copyUrl('{{image.id}}-url')">Copy Image Url</button> -->
+            </div>
+          </div>
+        </div>
       </div>
-    {% endfor %}
-  {% endif %}
+      <script type="text/javascript">
+        function copyUrl(element) {
+          var myVar = document.getElementById(element)
+          myVar.select();
+          document.execCommand('copy')
+        }
+      </script>
+      {% endfor %}
+      {% endif %}
+    </div>
   </div>
-</div>
-{% endblock %}
+  {% endblock %}

@@ -11,10 +11,10 @@ def search_results(request):
 
     if 'topic' in request.GET and request.GET["topic"]:
         search_term = request.GET.get("topic")
-        searched_photo = Photo.search_by_topic(search_term)
+        searched_photos = Photo.search_by_topic(search_term)
         message = f"{search_term}"
 
-        return render(request, 'search.html',{"message":message,"photo": searched_photo})
+        return render(request, 'search.html',{"message":message,"photo": searched_photos})
 
     else:
         message = "You haven't searched for any term"
