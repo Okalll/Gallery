@@ -2,32 +2,31 @@
 {%load static%}
 
 <!doctype HTML>
-<html style="overflow-x:hidden;">
+<html>
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport">
   <title>Funny-Bunny Photography</title>
+  {%block styles%}
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+  {%endblock%}
 </head>
 
 <body>
+  <div class="container">
+    <h3>Some of our photos</h3>
+    {% block content %}
 
-  <!-- Navigation -->
-
-  <h3>Some of our photos</h3>
-  {% block content %}
-
-
-
-    <h1 class="text-center">Funny-Bunny</h1>
-    <div class="row" style="margin-right: 0px;">
+    <h1 style="font-family'Sacramento', cursive" class="text-center">Funny-Bunny</h1>
+    <div class="row">
 
       {% for photo in photos %}
       <div class="col-md-4">
-        <img style="width: 100%; margin: 2px;" src="{{photo.photo.url}}" class="card-img-top img-fluid" alt="photo" data-toggle="modal" data-target="#{{photo.id}}">
+        <img style="width: 100%; margin: 20px;" src="{{photo.photo.url}}" class="card-img-top img-fluid" alt="photo" data-toggle="modal" data-target="#{{photo.id}}">
 
         <!-- photo Details modal -->
 
@@ -66,84 +65,8 @@
     </div>
 
 
-  {% endblock %}
+    {% endblock %}
+  </div>
 </body>
 
 </html>
-
-
-
-  <!-- Portfolio Gallery Grid -->
-  <!-- <div class="row">
-    <div class="column Foods">
-      <div class="content">
-        <img src="https://www.ocf.berkeley.edu/~sather/wp-content/uploads/2018/01/food--1200x600.jpg" alt="Food" style="width:100%">
-        <h4>Healthy Food</h4>
-        <p>Healthy eating means eating a variety of foods that give you the nutrients you need to maintain your health, feel good, and have energy. These nutrients include protein, carbohydrates, fat, water, vitamins, and minerals. </p>
-      </div>
-    </div>
-    <div class="column Fashion">
-      <div class="content">
-        <img src="https://encrypted-tbn0.gstatic.com/photos?q=tbn:ANd9GcSWKlgvHqxusWAyF1RPvFzXaHcck34zb8wYKM-1YPniV-jIFOFOhw" alt="Fashion" style="width:100%">
-        <h4>Woman</h4>
-        <p>Lorem ipsum dolor..</p>
-      </div>
-    </div>
-    <div class="column Travel">
-      <div class="content">
-        <img src="https://media.istockphoto.com/photos/family-with-teenage-children-in-car-on-road-trip-picture-id846743282?k=6&m=846743282&s=612x612&w=0&h=hWmNNL9QQBPvnntyCyJBAQuJQKZg1l3kezrR7ofd3Gk=" alt="Travel" style="width:100%">
-        <h4>Family Trip</h4>
-        <p>A vacation, or holiday, is a leave of absence from a regular occupation, or a specific trip or journey, usually for the purpose of recreation or tourism. ... Vacations are often spent with friends or family.</p>
-      </div>
-    </div>
-    <div class="column Foods">
-      <div class="content">
-        <img src="https://i.ndtvimg.com/i/2015-05/junk-food_625x350_81432196524.jpg" alt="Foods" style="width:100%">
-        <h4>Junk Foods</h4>
-        <p>Junk food is a pejorative term, dating back at least to the 1950s, describing food that is high in calories from sugar or fat, with little dietary fiber, protein, vitamins or minerals. It can also refer to high protein food like meat
-          prepared with saturated fat.</p>
-      </div>
-    </div>
-    <div class="column Travel">
-      <div class="content">
-        <img src="https://www.studentbrands.co.za/wp-content/uploads/2017/07/road-trip.jpg" alt="Travel" style="width:100%">
-        <h4>Road Trip</h4>
-        <p>When a couple of people pile in a car and drive around on country roads drinking beer. This usually is done on the way to a party or waiting for a party to start. This is most enjoyable when women are involved.</p>
-      </div>
-    </div>
-    <div class="column Foods">
-      <div class="content">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCZ1eaUaK7ly1FJ6lRFs1tbp1EkeoliKt7-R0Hx4Avq3RnoturoA" alt="Foods" style="width:100%">
-        <h4>Veggies</h4>
-        <p>Vegetables are important part of healthy eating and provide a source of many nutrients, including potassium, fiber, folate (folic acid) and vitamins A, E and C. Options like broccoli, spinach, tomatoes and garlic provide additional
-          benefits, making them a superfood!</p>
-      </div>
-    </div>
-    <div class="column Fashion">
-      <div class="content">
-        <img src="https://fashionista.com/.image/c_fit%2Ccs_srgb%2Cfl_progressive%2Ch_406%2Cq_auto:good%2Cw_620/MTU0MTM0Njc1NDIwMzU3Nzky/14_rocio_1_gettyimages-922968126.jpg" alt="Fashion" style="width:100%">
-        <h4>Man</h4>
-        <p>Lorem ipsum dolor..</p>
-      </div>
-    </div>
-    <div class="column Travel">
-      <div class="content">
-        <img src="https://cdn.zmescience.com/wp-content/uploads/2016/05/nat-geo1.jpg" alt="Travel" style="width:100%">
-        <h4>Animals</h4>
-        <p>The following has been picked from the National Geographic site. A rare picture taken by a tourist photographer during his travel journey around the world. This pretty much depicts alot in an artistic way of course</p>
-      </div>
-    </div>
-
-    <div class="column Fashion">
-      <div class="content">
-        <img src="https://i.ebayimg.com/images/g/Z0AAAOSwL9tbdZCo/s-l300.jpg" alt="Fashion" style="width:100%">
-        <h4>Girl</h4>
-        <p>Lorem ipsum dolor..</p>
-      </div>
-    </div>
-
-
-  <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/popper.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>

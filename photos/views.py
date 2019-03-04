@@ -14,7 +14,7 @@ def search_results(request):
         searched_photos = Photo.search_by_topic(search_term)
         message = f"{search_term}"
 
-        return render(request, 'search.html',{"message":message,"photo": searched_photos})
+        return render(request, 'search.html',{"message":message,"photos": searched_photos})
 
     else:
         message = "You haven't searched for any term"
