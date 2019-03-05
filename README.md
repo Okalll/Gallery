@@ -33,6 +33,14 @@ You need the following to work on the project:
 ## Link to Live Website
 https://viv-graphy.herokuapp.com/
 
+## Technologies used
+- Python 3.6
+- HTML
+- Bootstrap 4
+- JavaScript
+- Heroku
+- Postgresql
+
 ## License
 MIT License
 
