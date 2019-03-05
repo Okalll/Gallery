@@ -6,7 +6,7 @@ from django.views.generic import RedirectView
 
 urlpatterns=[
     url(r'^$', views.index, name='index'),
-    url(r'^location/(\d+)', views.show_location, name='ShowLocation'),
+    url(r'^location/(\d+)', views.show_location, name='showLocation'),
     url(r'^search/', views.search_results, name='search_results'),
 
     # url(r'^photo/$', views.about, name='about'),

@@ -4,8 +4,8 @@ from django.http import HttpResponse, Http404
 
 def index(request):
     photos = Photo.objects.all()
-    location = Location.objects.all()
-    return render(request,'index.html', {'photos':photos, 'location':location})
+    locations = Location.objects.all()
+    return render(request,'index.html', {'photos':photos, 'locations':locations})
 
 def search_results(request):
 
@@ -20,9 +20,11 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
 
-def show_location(request):
-    location = location.objects.all()
-    location = location.objects.get(id = location_id)
-    photo = photo.objects.filter(location = location.id)
-
-    return render(request,'location.html',{'location':location,'photo':photo})
+def show_location(request,location_id):
+    try:
+        locations = Location.objects.all()
+        location = Location.objects.get(id = location_id)
+        photos = Photo.objects.filter(location = location.id)
+    except:
+        raise Http404()
+    return render(request,'location.html',{'location':location,'photos':photos,'locations':locations})

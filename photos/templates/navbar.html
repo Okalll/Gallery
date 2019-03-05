@@ -20,17 +20,29 @@
         <i class="fa fa-bars fa-2x"></i>
       </div>
       <div class="logo">
-        LOGO
-      </div>
-      <div class="menu">
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Location</a></li>
-          <li><a href="#">Blog</a></li>
+        FUNNY-BUNNY PHOTOGRAPHY
 
-        </ul>
       </div>
+      <div>
+       <ul class="navbar-nav mr-auto">
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Locations</a>
+           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+             {% for location in locations %}
+               <a class="dropdown-item" href="{% url 'showLocation' location.id%}">{{location.name}}</a>
+             {% endfor %}
+           </div>
+         </li>
+       </ul>
+
+   </div>
+   <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}">
+     <input class="form-control mr-sm-2" type="text" placeholder="Search Topic" aria-label="Search" name='topic'>
+     <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+   </form>
     </nav>
+
   </header>
 </body>
 
