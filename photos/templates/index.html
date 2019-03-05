@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
   <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   {%endblock%}
 </head>
 
@@ -26,47 +29,70 @@
 
       {% for photo in photos %}
       <div class="col-md-4">
+
+
+
         <img style="width: 100%; margin: 20px;" src="{{photo.photo.url}}" class="card-img-top img-fluid" alt="photo" data-toggle="modal" data-target="#{{photo.id}}">
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="myModal" role="dialog" style="background-image:url('{{image.image.url}}');background-size: cover" > -->
+        <div class="modal fade" id="{{photo.id}}" role="dialog">
+          <div class="modal-dialog">
 
-        <!-- photo Details modal -->
-
-        <div class="modal fade bd-example-modal-lg" id="{{photo.id}}" tabindex="-1" role="dialog" aria-labelledby="photoTitle" aria-hidden="true">
-          <div style="max-width:70%; max-height:50%; padding-top:100px;" class="modal-dialog modal-dialog-centered" role="document">
+            <!-- Modal content-->
             <div class="modal-content">
+
               <div class="modal-header">
-                <h5 class="modal-title" id="photoTitle">{{photo.name}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+
+                <h2 class="text-center">{{photo.name}}</h2>
+
               </div>
-              <div class="modal-body">
-                <img src="{{photo.photo.url}}" class="img-fluid" alt="photo" style="width:300px">
-                <br>
-                {{photo.description}}
-              </div>
+
+              <img src="{{photo.photo.url}}" class="img-responsive">
+
+              <h3 class="text-center">Location: {{ photo.location}} </h3>
+
+
+              <h3 class="text-center" style="font-family: 'Loved by the King', cursive;"> <strong>Description:</strong>{{ photo.description}} </h3>
+
+
               <div class="modal-footer">
-                <input class="form-control input-lg" type="text" value="https://gallery-django.herokuapp.com{{photo.photo.url}}" id="{{photo.id}}-url">
-                <button class="btn btn-outline-info" onclick="copyUrl('{{photo.id}}-url')">Copy photo Url</button>
+                <form>
+                  <input class="form-control" type="text" id="link" value="http://127.0.0.1:8000{{photo.photo.url}}">
+                  <button onclick="copyLink()" class="btn btn-outline-primary">Copy link</button>
+                  <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                </form>
+
               </div>
             </div>
+
           </div>
         </div>
+
+
+        <script>
+          function copyLink() {
+            /* Get the text field */
+            var copyText = document.getElementById("link");
+            /* Select the text field */
+            copyText.select();
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+            /* Alert the copied text */
+            alert("Ready to share the link: " + copyText.value);
+          }
+        </script>
+
       </div>
-      <script type="text/javascript">
-        function copyUrl(element) {
-          var myVar = document.getElementById(element)
-          myVar.select();
-          document.execCommand('copy')
-        }
-      </script>
+
       {% empty %}
       <h3 class="text-center">There are No photos</h3>
-      {% endfor %}
     </div>
-
-
-    {% endblock %}
+    {% endfor %}
   </div>
+
+
+  {% endblock %}
+
 </body>
 
 </html>

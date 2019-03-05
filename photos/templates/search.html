@@ -6,7 +6,7 @@
     {% if photo %}
     <h2>Found {{ photo|length }} of searched term {{message}}</h2>
     {% else %}
-    <h2> Found 0 topics for the search term {{message}}</h2>
+    <h2> Found {{message}}</h2>
     {% endif %}
 
   </div>
@@ -16,10 +16,7 @@
 
     {% for photo in photos %}
     <div class="col-md-4">
-    <!-- <div class="col-sm-6 col-md-3">
-      <h1>{{photo.name}}</h1>
-    </div> -->
-      <img style=" width:100%; margin: 20px;" src="{{photo.photo.url}}" alt="photo" data-toggle="modal" data-target="#{{photo.id}}">
+      <img style=" width:100%; margin: 20px;" src="{{photo.photo.url}}" class="card-img-top img-fluid" alt="photo" data-toggle="modal" data-target="#{{photo.id}}">
       <!-- Image Details modal -->
 
       <div class="modal fade bd-example-modal-lg" id="{{photo.id}}" tabindex="-1" role="dialog" aria-labelledby="imageTitle" aria-hidden="true">
